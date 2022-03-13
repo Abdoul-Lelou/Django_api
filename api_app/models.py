@@ -62,8 +62,8 @@ class ArchiveUser(models.Model):
 
     def get_absolute_url(self):
         return reverse("Archiveuser_detail", kwargs={"pk": self.pk})
-    # class Meta:
-    #     unique_together = ('user',)
+    class Meta:
+        unique_together = ('user',)
 
 
 class ArchiveCour(models.Model):

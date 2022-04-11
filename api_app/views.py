@@ -208,7 +208,7 @@ class CourViews(APIView):
 
                     if serializer.is_valid():
                         serializer.save()
-                        return Response({"status": "success", "data": serializer.data})
+                        return Response({"status": "success", "data": serializer.data,"msg":"ca marche"})
                     else:
                         return Response({"status": "error", "data": serializer.errors})
 
@@ -319,14 +319,17 @@ class ArchiveUserViews(APIView):
     def delete(self, request, id):
 
         if  request.user.id:
-            user_id = request.user.id
-            user_login = User.objects.get(id = user_id)
+            if id:
+                user_id = request.user.id
+                user_login = User.objects.get(id = user_id)
 
             if user_login.role == "admin":
-                
                 if id:
-                    item = Cour.objects.get(id=id)
+                    item = get_object_or_404(ArchiveUser, id=id)
+                    idUser = item.user
+                    userArchive = User.objects.get(id = idUser)
                     item.delete()
+                    userArchive.delete()
 
                     return Response({"status": "success", "data": "Archive supprimé"})
 
@@ -334,7 +337,7 @@ class ArchiveUserViews(APIView):
 
             return Response({"status": "error", "data": "Role insuffisant"})
 
-        return Response({"status": "error", "data": "Connexion requise"})       
+        return Response({"status": "success", "data": "Connexion requise"})
 
 
 
@@ -435,6 +438,7 @@ class ArchiveCourViews(APIView):
 
 
 class ArchiveUserDataViews(APIView):
+
     def post(self, request):
             if request.user.id:
                 user_id = request.user.id
@@ -448,7 +452,30 @@ class ArchiveUserDataViews(APIView):
                         return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
                 return Response({"status": "error", "data": "Role insuffisant"}, status=status.HTTP_401_UNAUTHORIZED)
             return Response({"status": "error", "data": "Connexion requise"}, status=status.HTTP_403_FORBIDDEN) 
+            
+    def delete(self, request, id):
 
+        if  request.user.id:
+            user_id = request.user.id
+            user_login = User.objects.get(id = user_id)
+
+            if user_login.role == "admin":
+                
+                if id:
+                    item = ArchiveUser.objects.get(id=id)
+                    userArchive = User.objects.get(id = item.user_id)
+                    item.delete()
+                    userArchive.delete()
+
+                    return Response({"status": "success", "data": "Archive supprimé"})
+
+                return Response({"status": "error", "data": "Archive n'existe pas"})
+
+            return Response({"status": "error", "data": "Role insuffisant"})
+
+        return Response({"status": "error", "data": "Connexion requise"})
+        
+        
 
 def UserArchive(id):
     if id:

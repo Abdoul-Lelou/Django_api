@@ -183,8 +183,8 @@ JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token'  # to anything
 JWT_AUTH_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:8000','http://localhost:8080']
+CORS_ALLOWED_ORIGINS = ['http://abdoulbenzy.pythonanywhere.com/']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:8000','http://localhost:8080','http://abdoulbenzy.pythonanywhere.com/']
 CORS_ALLOW_METHODS = ["DELETE","GET","PATCH","POST","PUT"]
 
 

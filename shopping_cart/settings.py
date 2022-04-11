@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8yod0oh^8ajkl9@c6i*!0nv-6nb2%$_h296ik2pb!!wsuozr84'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -183,8 +183,8 @@ JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token'  # to anything
 JWT_AUTH_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ['http://abdoulbenzy.pythonanywhere.com/']
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:8000','http://localhost:8080','http://abdoulbenzy.pythonanywhere.com/']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000','http://localhost:8000','http://localhost:8080']
 CORS_ALLOW_METHODS = ["DELETE","GET","PATCH","POST","PUT"]
 
 

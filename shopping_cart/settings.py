@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8yod0oh^8ajkl9@c6i*!0nv-6nb2%$_h296ik2pb!!wsuozr84'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['http://abdoulbenzy.pythonanywhere.com/','http://localhost:3000','localhost']
 
@@ -84,19 +84,19 @@ WSGI_APPLICATION = 'shopping_cart.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': BASE_DIR / 'db.sqlite3',
-     }
+     #'default': {
+     #   'ENGINE': 'django.db.backends.sqlite3',
+     #    'NAME': BASE_DIR / 'db.sqlite3',
+     #}
 
-    #'default': {
-    #    'ENGINE': 'django.db.backends.mysql', 
-    #    'NAME': 'django_api',
-    #    'USER': 'root',
-    #    'PASSWORD': '',
-    #    'HOST': '127.0.0.1',                     
-    #    'PORT': '3306',
-    #}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'django_api',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',                     
+        'PORT': '3306',
+    }
 }
 
 

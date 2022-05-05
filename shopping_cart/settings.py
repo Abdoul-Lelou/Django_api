@@ -12,29 +12,21 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-import django_heroku
-import dotenv
-import dj_database_url
 import os
+import django_on_heroku
 
+
+#django_on_heroku.settings(locals())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-django_heroku.settings(locals())
 
-
-BASE_DIR = Path(__file__).resolve().root.root
-
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
-    
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8yod0oh^8ajkl9@c6i*!0nv-6nb2%$_h296ik2pb!!wsuozr84'
+#SECRET_KEY = 'django-insecure-8yod0oh^8ajkl9@c6i*!0nv-6nb2%$_h296ik2pb!!wsuozr84'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,23 +92,21 @@ WSGI_APPLICATION = 'shopping_cart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-#DATABASES = {
+DATABASES = {
      #'default': {
      #   'ENGINE': 'django.db.backends.sqlite3',
      #    'NAME': BASE_DIR / 'db.sqlite3',
      #}
 
- #   'default': {
-  #      'ENGINE': 'django.db.backends.mysql', 
-   #     'NAME': 'django_api',
-   #     'USER': 'root',
-    #    'PASSWORD': '',
-     #   'HOST': '127.0.0.1',                     
-      #  'PORT': '3306',
-    #}
-#}
-DATABASES={}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'django_api',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',                     
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
@@ -231,12 +221,9 @@ PUBLIC_MEDIA_LOCATION = 'media'
 #MEDIA_URL = f'http://127.0.0.1:8000/static/admin/img/'
 MEDIA_URL = '/api/media/'
 
-
+django_on_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)

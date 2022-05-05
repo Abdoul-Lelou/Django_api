@@ -12,12 +12,24 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import django_heroku
+import dotenv
+import dj_database_url
 import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+django_heroku.settings(locals())
 
+
+BASE_DIR = Path(__file__).resolve().root.root
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+    
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -88,21 +100,23 @@ WSGI_APPLICATION = 'shopping_cart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+#DATABASES = {
      #'default': {
      #   'ENGINE': 'django.db.backends.sqlite3',
      #    'NAME': BASE_DIR / 'db.sqlite3',
      #}
 
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'django_api',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',                     
-        'PORT': '3306',
-    }
-}
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.mysql', 
+   #     'NAME': 'django_api',
+   #     'USER': 'root',
+    #    'PASSWORD': '',
+     #   'HOST': '127.0.0.1',                     
+      #  'PORT': '3306',
+    #}
+#}
+DATABASES={}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
@@ -223,3 +237,6 @@ MEDIA_URL = '/api/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)

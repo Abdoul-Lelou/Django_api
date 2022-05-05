@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,11 @@ SECRET_KEY = 'django-insecure-8yod0oh^8ajkl9@c6i*!0nv-6nb2%$_h296ik2pb!!wsuozr84
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://abdoulbenzy.pythonanywhere.com/','http://localhost:3000','localhost']
+ALLOWED_HOSTS = [
+    'http://abdoulbenzy.pythonanywhere.com/',
+    'http://localhost:3000',
+    'localhost','127.0.0.1'
+]
 
 
 # Application definition
@@ -204,7 +209,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+PUBLIC_MEDIA_LOCATION = 'media'
+#MEDIA_URL = f'http://127.0.0.1:8000/static/admin/img/'
+MEDIA_URL = '/api/media/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

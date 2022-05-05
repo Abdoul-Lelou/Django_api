@@ -57,21 +57,21 @@ class UserViews(APIView):
             user_id = request.user.id
             user_login = User.objects.get(id = user_id)
 
-            if user_login.role == "admin":
-                if id:
-                    item = User.objects.filter(id=id)
-                    if item:
-                        serializer = UserSerializer(item, many=True)
-                        return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-                    
-                    return Response({"status": "error", "data": "Utilisateur n'existe pas"}, status=status.HTTP_400_BAD_REQUEST)
+           # if user_login.role == "admin":
+            if id:
+                item = User.objects.filter(id=id)
+                if item:
+                    serializer = UserSerializer(item, many=True)
+                    return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+                
+                return Response({"status": "error", "data": "Utilisateur n'existe pas"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 
-                query_set = User.objects.all()
-                serializer = UserSerializer( query_set, many=True)
-                return Response(serializer.data)
-            return Response({"status": "failed", "data": "role insuffisant"}, status=status.HTTP_401_UNAUTHORIZED)
+            query_set = User.objects.all()
+            serializer = UserSerializer( query_set, many=True)
+            return Response(serializer.data)
+            #return Response({"status": "failed", "data": "role insuffisant"}, status=status.HTTP_401_UNAUTHORIZED)
 
         return Response({"status": "error", "data": "Connexion requise"}, status=status.HTTP_404_NOT_FOUND)
    
@@ -83,25 +83,27 @@ class UserViews(APIView):
             user_id = request.user.id
             user_login = User.objects.get(id = user_id)
 
-            if user_login.role == "admin":
+            #if user_login.role == "admin":
 
-                if id:
-                    item = User.objects.get(id=id)
-                    serializer = UserSerializer(item, data=request.data, partial=True)
+            if id:
+                item = User.objects.get(id=id)
+                serializer = UserSerializer(item, data=request.data, partial=True)
 
-                    if serializer.is_valid():
-                        serializer.save()
-                        return Response({"status": "success", "data": serializer.data})
-                    else:
-                        return Response({"status": "error", "data": serializer.errors})
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"status": "success", "data": serializer.data})
+                else:
+                    return Response({"status": "error", "data": serializer.errors})
 
-                return Response({"status": "failed", "data": "Utilisateur n'existe pas"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"status": "failed", "data": "Utilisateur n'existe pas"}, status=status.HTTP_401_UNAUTHORIZED)
 
-            return Response({"status": "failed", "data": "Role insuffisant"}, status=status.HTTP_401_UNAUTHORIZED)
+            #return Response({"status": "failed", "data": "Role insuffisant"}, status=status.HTTP_401_UNAUTHORIZED)
 
         return Response({"status": "error", "data": "Connexion requise"}, status=status.HTTP_403_FORBIDDEN)
 
 
+
+    
     
     def delete(self, request, id):
         if  request.user.id:
@@ -270,21 +272,21 @@ class ArchiveUserViews(APIView):
             user_id = request.user.id
             user_login = User.objects.get(id = user_id)
 
-            if user_login.role == "admin" :
-                if id:
-                    item = ArchiveUser.objects.filter(id=id)
-                    if item:
-                        serializer = ArchiveUserSerializer(item, many=True)
-                        return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-                    
-                    return Response({"status": "error", "data": "Archive n'existe pas"}, status=status.HTTP_400_BAD_REQUEST)
+            #if user_login.role == "admin" :
+            if id:
+                item = ArchiveUser.objects.filter(id=id)
+                if item:
+                    serializer = ArchiveUserSerializer(item, many=True)
+                    return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+                
+                return Response({"status": "error", "data": "Archive n'existe pas"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 
-                query_set = ArchiveUser.objects.all()
-                serializer = ArchiveUserSerializer( query_set, many=True)
-                return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-            return Response({"status": "failed", "data": "role insuffisant"}, status=status.HTTP_403_FORBIDDEN)
+            query_set = ArchiveUser.objects.all()
+            serializer = ArchiveUserSerializer( query_set, many=True)
+            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+            #return Response({"status": "failed", "data": "role insuffisant"}, status=status.HTTP_403_FORBIDDEN)
             
        return Response({"status": "error", "data": "Connexion requise"}, status=status.HTTP_401_UNAUTHORIZED)
 

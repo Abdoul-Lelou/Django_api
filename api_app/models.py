@@ -12,7 +12,7 @@ class User(AbstractUser):
     is_archive = models.BooleanField()
     last_login = models.DateTimeField(auto_now= True)
     is_superuser = models.BooleanField(default= False)
-    image = models.ImageField(upload_to ='uploads/', default='default.jpg')
+    image = models.ImageField(upload_to ='uploads/', default='')
 
 
     USERNAME_FIELD = 'email'

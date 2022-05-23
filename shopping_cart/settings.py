@@ -100,14 +100,15 @@ DATABASES = {
      #}
 
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'django_api',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',                     
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql', 
+        'NAME': 'dl3rr2ufcqg7s',
+        'USER': 'veucedjytllhnh',
+        'PASSWORD': 'fe7e28734c3980c09fa5f24deeb818e2e38d23e7c20ef36e95ffaea5ac2e1d72',
+        'HOST': 'ec2-54-172-175-251.compute-1.amazonaws.com',                     
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation

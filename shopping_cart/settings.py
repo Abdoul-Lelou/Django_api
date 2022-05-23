@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import django_on_heroku
-import dj_database_url
+
 
 
 #django_on_heroku.settings(locals())
@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [
     'http://localhost:3000',
     'localhost','127.0.0.1',
     'api-django-react.herokuapp.com',
-    'cryptic-reaches-30474.herokuapp.com'
+    'django-api-bakeli.herokuapp.com'
 ]
 
 
@@ -112,10 +112,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
 
 
 # Password validation

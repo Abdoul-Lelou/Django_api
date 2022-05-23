@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import django_on_heroku
+import dj_database_url
 
 
 #django_on_heroku.settings(locals())
@@ -35,7 +36,8 @@ ALLOWED_HOSTS = [
     'http://abdoulbenzy.pythonanywhere.com/',
     'http://localhost:3000',
     'localhost','127.0.0.1',
-    'api-django-react.herokuapp.com'
+    'api-django-react.herokuapp.com',
+    'cryptic-reaches-30474.herokuapp.com'
 ]
 
 
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     'api_app',
     'debug_toolbar',
     'drf_yasg',
+    'whitenoise.runserver_nostatic'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,7 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'shopping_cart.urls'
@@ -108,6 +112,10 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
@@ -219,6 +227,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 PUBLIC_MEDIA_LOCATION = 'media'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_on_heroku.settings(locals())
 

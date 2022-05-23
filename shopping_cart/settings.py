@@ -34,7 +34,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'http://abdoulbenzy.pythonanywhere.com/',
     'http://localhost:3000',
-    'localhost','127.0.0.1'
+    'localhost','127.0.0.1',
+    'api-django-react.herokuapp.com'
 ]
 
 

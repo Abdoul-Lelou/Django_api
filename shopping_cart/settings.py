@@ -104,6 +104,17 @@ DATABASES = {
      #}
 
     'default': {
+        # Config mysql
+
+        # 'ENGINE': 'django.db.backends.mysql', 
+        # 'NAME': 'django_api',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': '127.0.0.1',                     
+        # 'PORT': '3306',
+
+        #Config postgresql
+
         'ENGINE': 'django.db.backends.postgresql', 
         'NAME': 'd6n05q0u5ibuon',
         'USER': 'yfosdjtyeuudfx',
@@ -112,6 +123,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

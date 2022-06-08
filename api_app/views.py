@@ -202,7 +202,7 @@ class CourViews(APIView):
             user_id = request.user.id
             user_login = User.objects.get(id = user_id)
 
-            if user_login.role == "admin":
+            if user_login.role == "admin" or user_login.role == "proffesseur":
 
                 if id:
                     item = Cour.objects.get(id=id)

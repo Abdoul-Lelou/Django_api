@@ -106,21 +106,21 @@ DATABASES = {
     'default': {
         # Config mysql
 
-        # 'ENGINE': 'django.db.backends.mysql', 
-        # 'NAME': 'django_api',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
-        # 'HOST': '127.0.0.1',                     
-        # 'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'django_api',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',                     
+        'PORT': '3306',
 
         #Config postgresql
 
-        'ENGINE': 'django.db.backends.postgresql', 
-        'NAME': 'd6n05q0u5ibuon',
-        'USER': 'yfosdjtyeuudfx',
-        'PASSWORD': 'd0eba990517b7185095db1e2d0cbde560c110b91494bf13685b527137ae0a5a9',
-        'HOST': 'ec2-34-231-177-125.compute-1.amazonaws.com',                     
-        'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.postgresql', 
+        # 'NAME': 'd6n05q0u5ibuon',
+        # 'USER': 'yfosdjtyeuudfx',
+        # 'PASSWORD': 'd0eba990517b7185095db1e2d0cbde560c110b91494bf13685b527137ae0a5a9',
+        # 'HOST': 'ec2-34-231-177-125.compute-1.amazonaws.com',                     
+        # 'PORT': '5432',
     }
 }
 
